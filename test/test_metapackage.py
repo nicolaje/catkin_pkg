@@ -61,7 +61,11 @@ class TestMetapackageValidation(unittest.TestCase):
     """Tests the metapackage validator"""
     def test_validate_metapackage(self):
         pkgs_dict = find_packages(test_data_dir)
-        for path, package in pkgs_dict.iteritems():
+        if sys.version < '3':
+            items_iterator=pkgs_dict.iteritems()
+        else:
+            items_iterator=pkgs_dict.items()
+        for path, package in items_iterator:
             path = os.path.join(test_data_dir, path)
             assert package.name in test_expectations, 'Unknown test %s' % package.name
             exc, excreg, warnreg = test_expectations[package.name]
