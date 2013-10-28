@@ -142,7 +142,7 @@ def _reduce_cycle_set(packages_orig):
     :returns: A list of package names from the input which could not easily be detected as not being part of a cycle.
     '''
     assert(packages_orig)
-    packages = copy.copy(packages_orig)
+    packages = copy.deepcopy(packages_orig)
     last_depended = None
     while len(packages) > 0:
         depended = set([])
