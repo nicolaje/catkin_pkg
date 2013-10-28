@@ -35,7 +35,10 @@ def assert_warning(warnreg):
     orig_stdout = sys.stdout
     orig_stderr = sys.stderr
     try:
-        out = StringIO.StringIO()
+        if sys.version < '3':
+            out = StringIO.StringIO()
+        else:
+            out = StringIO()
         sys.stdout = out
         sys.stderr = sys.stdout
         yield
