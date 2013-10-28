@@ -3,8 +3,11 @@ from __future__ import print_function
 import contextlib
 import os
 import re
-import StringIO
 import sys
+if sys.version < '3':
+    import StringIO
+else:
+    from io import StringIO
 import unittest
 
 from catkin_pkg.metapackage import get_expected_cmakelists_txt
